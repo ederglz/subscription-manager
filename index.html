@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Subscription Manager</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" href="app.css">
+</head>
+<body>
+	<div class="Layout" id="manager">
+		<div class="Layout-header">
+			<header class="Header">
+				<h1 class="Header-title">Subscription Manager</h1>
+			</header>
+		</div>
+		<div class="Layout-main">
+			<div class="Actions">
+<!-- 				<div class="fixed-action-btn btn-custom">
+					<a class="btn-floating btn-large red"><i class="material-icons">add</i></a>
+				</div> -->
+				<div class="Form">
+					<input 
+					class="Form-input input-field" 
+					type="text"
+					placeholder="Name" 
+					v-model="sub.name">
+					<input 
+					class="Form-input input-field" 
+					type="number"
+					placeholder="Price" 
+					v-model="sub.price">
+					<input 
+					class="Form-input input-field" 
+					type="date"
+					placeholder="Date you pay" 
+					v-model="sub.date">
+					<input 
+					class="Form-input input-field" 
+					type="text"
+					placeholder="img url" 
+					v-model="sub.img">
+					<button class="Form-btn btn" v-on:click="addSub">Add</button>
+					<span v-if="error">All fields are required</span>
+				</div>
+			</div>
+			<div class="Subscriptions">
+				<div class="Item" v-for="(sub, $index) in subs">
+					<div class="Item-actions">
+						<button class="btn red darken-4" v-on:click="deleteEvent($index)">Remove
+							<i class="material-icons right">delete</i>
+						</button>
+					</div>
+					<div class="Item-image" v-if="sub.img">
+						<figure>
+							<img :src="sub.img" alt="">
+						</figure>
+						<figcaption class="Item-title items">
+							{{sub.name}}
+						</figcaption>
+					</div>
+					<div class="Item-list">
+						<div class="Item-amount items">
+							<i class="material-icons right">toll</i>
+							$ {{sub.price}}
+						</div>
+						<div class="Item-date items">
+							<i class="material-icons right">today</i>
+							{{sub.date}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
