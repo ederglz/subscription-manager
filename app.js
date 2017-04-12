@@ -1,34 +1,35 @@
-function fetchArray(key) {
-  if (localStorage.getItem(key)) {
-    return JSON.parse(localStorage.getItem(key));
-  }
-  return [];
-}
-function saveArray(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
 /*eslint-disable */
 new Vue({
 /*eslint-enable */
   el: '#manager',
   data: {
     sub: {name: '', price: '', date: '', img: ''},
-    subs: fetchArray('my-subscriptions') || [],
+    subs: [],
     error: false
   },
-  ready: function() {
-    this.fetchSubs();
-    this.$watch('my-subscriptions', function(value) {
-      saveArray('my-subscriptions', value);
-    });
+  mounted: function() {
+    console.log(this.fetchArray('subs'));
+    this.subs = this.emptyObejct(this.fetchArray('subs')) ? [] : this.fetchArray('subs');
+  },
+  watch: {
+    subs: function() {
+      this.saveArray('subs', this.subs || []);
+    }
   },
   methods: {
-    fetchSubs: function() {
-      var subs = [];
-      this.$set('subs', subs);
+    fetchArray: function(key) {
+      if (localStorage.getItem(key)) {
+        return JSON.parse(localStorage.getItem(key));
+      }
+    },
+    emptyObejct: function(obj) {
+      return Object.keys(obj).length === 0 && obj.constructor === Object;
+    },
+    saveArray: function(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
     },
     addSub: function() {
-      if (this.sub.name && this.sub.price && this.sub.date) {
+      if (this.sub.name && this.sub.price && this.sub.date && this.sub.img) {
         this.error = false;
         this.subs.push(this.sub);
         this.sub = {name: '', price: '', date: '', img: ''};
