@@ -1,6 +1,6 @@
 {
   "name": "subscription-manager",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Subscription manager with Vue",
   "main": "app.js",
   "scripts": {
