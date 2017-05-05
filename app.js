@@ -8,7 +8,6 @@ new Vue({
     error: false
   },
   mounted: function() {
-    console.log(this.fetchArray('subs'));
     this.subs = this.emptyObejct(this.fetchArray('subs')) ? [] : this.fetchArray('subs');
   },
   watch: {
