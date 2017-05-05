@@ -28,7 +28,7 @@ new Vue({
       localStorage.setItem(key, JSON.stringify(value));
     },
     addSub: function() {
-      if (this.sub.name && this.sub.price && this.sub.date && this.sub.img) {
+      if (this.sub.name && this.sub.price && this.sub.date) {
         this.error = false;
         this.subs.push(this.sub);
         this.sub = {name: '', price: '', date: '', img: ''};
